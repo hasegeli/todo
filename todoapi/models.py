@@ -17,7 +17,7 @@ class Todo(models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     completed = models.BooleanField(default=False)
     dueTo = models.DateTimeField(null=True, blank=True)
-    priority = models.ForeignKey(Priority, null=True)
+    priority = models.ForeignKey(Priority, null=True, blank=True)
 
     class Meta:
         ordering = 'createdAt',

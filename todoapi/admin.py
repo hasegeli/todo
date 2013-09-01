@@ -6,7 +6,7 @@ from todoapi.models import Priority, Todo
 admin.site.register(Priority)
 
 class TodoAdmin(admin.ModelAdmin):
-    list_display = 'formattedTitle', 'dueTo', 'priority',
+    list_display = 'user', 'formattedTitle', 'dueTo', 'priority',
 
     def formattedTitle(self, todo):
         if todo.completed:

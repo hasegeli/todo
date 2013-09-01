@@ -8,13 +8,19 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all()
     serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 class TodoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows todo list of the current user to be viewed or edited.
     """
-    queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+    model = Todo
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+    def pre_save(self, todo):
+        todo.user = self.request.user
 

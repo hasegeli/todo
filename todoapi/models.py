@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 class Priority(models.Model):
     name = models.CharField(max_length=200, unique=True)
     sortOrder = models.SmallIntegerField(unique=True)
@@ -12,6 +14,7 @@ class Priority(models.Model):
         return self.name
 
 class Todo(models.Model):
+    user = models.ForeignKey(User)
     title = models.CharField(max_length=1000)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
